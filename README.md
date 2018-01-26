@@ -15,4 +15,4 @@ $ docker push 127.0.0.1:5000/traefik:latest
 
 Creamos el servicio traefik:
 
-> docker service create --name traefik --constraint 'node.role==manager' --publish 80:80 --publish 8090:8080 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock --network core-infra traefik::latest --docker --docker.swarmmode --docker.domain=traefik.redyser.com --docker.watch --logLevel=DEBUG --web
+> docker service create --name traefik --constraint 'node.role==manager' --publish 80:80 --publish 8090:8080 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock --network core-infra traefik:latest --docker --docker.swarmmode --docker.domain=traefik.redyser.com --docker.watch --logLevel=DEBUG --web
