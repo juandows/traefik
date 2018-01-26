@@ -22,7 +22,7 @@ Creamos el servicio traefik:
 --publish 8090:8080 \
 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
 --network core-infra \
-traefik:camembert \
+traefik::latest \
 --docker \
 --docker.swarmmode \
 --docker.domain=traefik.redyser.com \
