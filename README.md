@@ -7,11 +7,11 @@ Nos conectamos al servidor docker del manager con eval (eval "$(docker-machine e
 
 Creamos la imagen docker con nuestros parámetros:
 
-$ docker build -t 127.0.0.1/traefik:latest .
+$ docker build -t 127.0.0.1:5000/traefik:latest .
 
 Nos conectamos por ssh al manager (  docker-machine ssh coreOs2 ) y subimos a nuestro registry dle SWARM la imagen:
 
-$ docker push 127.0.0.1/traefik:latest
+$ docker push 127.0.0.1:5000/traefik:latest
 
 Creamos el servicio traefik:
 
