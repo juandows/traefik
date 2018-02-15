@@ -7,25 +7,12 @@ Nos conectamos al servidor docker del manager con eval (eval "$(docker-machine e
 
 Creamos la imagen docker con nuestros parámetros:
 
-$ docker build -t 127.0.0.1/traefik:latest .
+$ docker build -t 127.0.0.1:5000/traefik:latest .
 
 Nos conectamos por ssh al manager (  docker-machine ssh coreOs2 ) y subimos a nuestro registry dle SWARM la imagen:
 
-$ docker push 127.0.0.1/traefik:latest
+$ docker push 127.0.0.1:5000/traefik:latest
 
 Creamos el servicio traefik:
 
-> docker service create \
---name traefik \
---constraint 'node.role==manager' \
---publish 80:80 \
---publish 8090:8080 \
---mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
---network core-infra \
-traefik:camembert \
---docker \
---docker.swarmmode \
---docker.domain=traefik.redyser.com \
---docker.watch \
---logLevel=DEBUG \
---web
+> docker service create --name traefik --constraint 'node.role==manager' --publish 80:80 --publish 443:443 --publish 8090:8080  --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock --network core-infra 127.0.0.1:5000/traefik:latest --docker --docker.swarmmode --docker.domain=traefik.redyser.com --docker.watch --logLevel=DEBUG --web
