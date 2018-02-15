@@ -17,11 +17,13 @@ address = ":443"
 email = "juande.mc@redyser.com"
 storage = "acme.json"
 entryPoint = "https"
-onDemand = false
+[acme.httpChallenge]
+    entryPoint = "http"
+onDemand = true
 OnHostRule = true
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "traefik.redyser.com"
+domain = "coretest.redyser.com"
 watch = true
 exposedbydefault = false
