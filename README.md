@@ -21,7 +21,9 @@ Creamos el servicio traefik:
 
 Hay que iniciar de nuevo el servicio traefik para que se coja el certificado del archivo acme.json.
 La primera vez entrar y coger el certifiado (FROM traefik:1.5-alpine). Luego podemos volver a poner (FROM traefik)
+
 Podemos tener el archivo acme.json en el host de docker. Como sólo tenemos un manager lo pondremos ahí:
+
 > docker-machine ssh coreOs2
 > mkdir /etc/traefik
 > cd /etc/traefik
