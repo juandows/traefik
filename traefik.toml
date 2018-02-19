@@ -1,26 +1,30 @@
-defaultEntryPoints = ["http", "https"]
+defaultEntryPoints = ["https","http"]
 
 [web]
-address = ":8090"
+address = ":8080"
 
 [entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
 
-[entryPoints.http]
-address = ":80"
-
-[entryPoints.https]
-address = ":443"
-
-[entryPoints.https.tls]
+[retry]
 
 [acme]
-email = "juande.mc@redyser.com"
+email = "juande.mc@coretest.redyser.com"
 storage = "acme.json"
 entryPoint = "https"
-[acme.httpChallenge]
-    entryPoint = "http"
-onDemand = true
 OnHostRule = true
+[acme.httpChallenge]
+entryPoint = "http"
+[[acme.domains]]
+  main = "coretest.redyser.com"
+
+
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
